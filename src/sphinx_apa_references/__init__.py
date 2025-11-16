@@ -29,6 +29,7 @@ class MyReferenceStyle(AuthorYearReferenceStyle):
     bracket_year: BracketStyle = field(default_factory=bracket_style)
 
 def setup(app):
+    app.add_config_value("bibtex_default_style", "apa", "env")
     register_plugin('pybtex.style.labels', 'myapa', MyAPALabelStyle)
     register_plugin('pybtex.style.formatting', 'myapastyle', MyAPAStyle)
     sphinxcontrib.bibtex.plugin.register_plugin('sphinxcontrib.bibtex.style.referencing','author_year_round', MyReferenceStyle)
