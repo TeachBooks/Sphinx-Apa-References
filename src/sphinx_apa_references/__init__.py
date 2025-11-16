@@ -1,4 +1,5 @@
 import sphinxcontrib.bibtex.plugin
+import os
 
 from dataclasses import dataclass, field
 from .pybtexapastyle.formatting.apa import APAStyle
@@ -7,6 +8,8 @@ from pybtex.plugin import register_plugin
 from sphinxcontrib.bibtex.style.referencing import BracketStyle
 from sphinxcontrib.bibtex.style.referencing.author_year import AuthorYearReferenceStyle
 from sphinxcontrib.bibtex.directives import BibliographyDirective
+from sphinx.application import Sphinx
+from sphinx.util.fileutil import copy_asset_file
 
 class APABibliographyDirective(BibliographyDirective):
     """Same as BibliographyDirective, but forces style='apa'."""
@@ -40,9 +43,20 @@ class MyReferenceStyle(AuthorYearReferenceStyle):
     bracket_label: BracketStyle = field(default_factory=bracket_style)
     bracket_year: BracketStyle = field(default_factory=bracket_style)
 
+def copy_stylesheet(app: Sphinx, exc: None) -> None:
+    base_dir = os.path.dirname(__file__)
+    style = os.path.join(base_dir, 'assets', 'apastyle.css')
+    
+    if app.builder.format == 'html' and not exc:
+        static_dir = os.path.join(app.builder.outdir, '_static')
+
+        copy_asset_file(style, static_dir)
+
 def setup(app):
     app.setup_extension("sphinxcontrib.bibtex")
     register_plugin('pybtex.style.labels', 'myapa', MyAPALabelStyle)
     register_plugin('pybtex.style.formatting', 'myapastyle', MyAPAStyle)
     sphinxcontrib.bibtex.plugin.register_plugin('sphinxcontrib.bibtex.style.referencing','author_year_round', MyReferenceStyle)
     app.add_directive('bibliography', APABibliographyDirective, override=True)
+    app.connect('build-finished', copy_stylesheet)
+    app.add_css_file('apastyle.css')
