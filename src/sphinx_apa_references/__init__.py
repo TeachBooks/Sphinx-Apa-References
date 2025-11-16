@@ -12,7 +12,7 @@ class MyAPALabelStyle(APALabelStyle):
         return APALabelStyle.format_label(self, entry)
 
 class MyAPAStyle(APAStyle):
-    default_label_style = 'apa'
+    default_label_style = 'myapa'
 
 def bracket_style() -> BracketStyle:
     return BracketStyle(
