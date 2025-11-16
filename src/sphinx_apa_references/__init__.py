@@ -1,8 +1,8 @@
 import sphinxcontrib.bibtex.plugin
 
 from dataclasses import dataclass, field
-from pybtexapastyle.formatting.apa import APAStyle
-from pybtexapastyle.labels.apa import LabelStyle as APALabelStyle
+from .pybtexapastyle.formatting.apa import APAStyle
+from .pybtexapastyle.labels.apa import LabelStyle as APALabelStyle
 from pybtex.plugin import register_plugin
 from sphinxcontrib.bibtex.style.referencing import BracketStyle
 from sphinxcontrib.bibtex.style.referencing.author_year import AuthorYearReferenceStyle
