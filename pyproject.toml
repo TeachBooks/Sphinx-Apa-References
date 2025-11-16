@@ -19,4 +19,4 @@ requires-python = ">=3.10"
 
 [tool.hatch]
 version.source = "vcs"
-build.hooks.vcs.version-file = "src/sphinx-apa-references/_version.py"
+build.hooks.vcs.version-file = "src/sphinx_apa_references/_version.py"
