@@ -13,10 +13,8 @@ This extension modifies the way references are formatted in Sphinx-generated doc
 
 This entails **forcing** the following APA-specific formatting rules:
 
-- Author names are formatted as "Last, F. M." (e.g., "Smith, J. D.").
-- Author-year formatting for in-text citations (e.g., "(Smith, 2020)").
 - Proper indentation and spacing for reference entries.
-- Alphabetical ordering of references by the last name of the first author.
+- Use of round brackets for in-text citations.
 
 ## Installation
 
@@ -70,7 +68,6 @@ No additional configuration is possible. The extension automatically applies APA
 
 This extensions enforces the following settings, overriding any user-defined settings in `_config.yml`/`conf.py`:
 
-- `bibtex_default_style = "myapastyle"`
 - `bibtex_reference_style = "author_year_round"`
 
 Furthermore, the `bibliography` directive is adapted to always use the value `apa` for the `style` option if the user does not provide a value for the `style` option.
