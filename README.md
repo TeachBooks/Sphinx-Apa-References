@@ -36,7 +36,7 @@ sphinx-apa-references
 
 **Step 3: Enable in `_config.yml` or `conf.py`**
 
-In your `_config.yml` file, add the extension to the list of Sphinx extra extensions (**important**: underscore, not dash this time):
+In your `_config.yml` file, add the extension to the list of Sphinx extra extensions (**important**: underscore, not dash this time) and specify the location of your bib file (note indentation of the bibtex file path specification; any number of bib files are allowed):
 ```
 sphinx: 
     extra_extensions:
@@ -47,6 +47,7 @@ sphinx:
         .
         .
         .
+bibtex_bibfiles: "<path_to_bib_file>/references.bib"
 ```
 
 or in your `conf.py` file, add the extension to the `extensions` list:
@@ -75,3 +76,25 @@ Furthermore, the `bibliography` directive is adapted to always use the value `ap
 ## Examples and details
 
 To see examples of usage visit [this page in the TeachBooks manual](https://teachbooks.io/manual/features/apa.html).
+
+## Previous APA implementation
+
+Prior to the creation of this Sphinx extension, APA referencing was implemented by including a local extension in a book subdirectory, as described in [Issue 1090 from the Jupyter Book repository](https://github.com/jupyter-book/jupyter-book/issues/1090).
+
+To upgrade from the previous setup, once this Sphinx extension is implemented in your book, the local extension files in `_ext` can be deleted and the four lines indicated below removed from your `_config.yml` file:
+
+```yaml
+sphinx:
+  config:
+    .
+    .
+    .
+    bibtex_reference_style: author_year_round   # remove
+    bibtex_default_style: myapastyle            # remove
+    .
+    .
+    .
+  local_extensions:
+    apastyle: _ext/                             # remove
+    bracket_citation_style: _ext/               # remove
+```
