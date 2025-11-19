@@ -37,7 +37,8 @@ sphinx-apa-references
 **Step 3: Enable in `_config.yml` or `conf.py`**
 
 In your `_config.yml` file, add the extension to the list of Sphinx extra extensions (**important**: underscore, not dash this time) and specify the location of your bib file (note indentation of the bibtex file path specification; any number of bib files are allowed):
-```
+
+```yaml
 sphinx: 
     extra_extensions:
         .
@@ -47,20 +48,15 @@ sphinx:
         .
         .
         .
-bibtex_bibfiles: "<path_to_bib_file>/references.bib"
+bibtex_bibfiles:
+    - "<path_to_bib_file>/<bibfile>.bib"
 ```
 
 or in your `conf.py` file, add the extension to the `extensions` list:
+
 ```python
-extensions = [
-    .
-    .
-    .
-    "sphinx_apa_references",
-    .
-    .
-    .
-]
+extensions = [...,"sphinx_apa_references",...]
+bibtex_bibfiles = ["<path_to_bib_file>/<bibfile>.bib"]
 ```
 
 ## Configuration
